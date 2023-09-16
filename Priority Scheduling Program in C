@@ -22,8 +22,6 @@ int main() {
         printf("Process %d: ", i + 1);
         scanf("%d %d %d", &processes[i].id, &processes[i].priority, &processes[i].burst_time);
     }
-
-    // Sort processes by priority (lower priority values get higher priority)
     for (i = 0; i < n - 1; i++) {
         for (j = 0; j < n - i - 1; j++) {
             if (processes[j].priority > processes[j + 1].priority) {
@@ -33,8 +31,6 @@ int main() {
             }
         }
     }
-
-    // Calculate waiting time and turnaround time
     processes[0].waiting_time = 0;
     processes[0].turnaround_time = processes[0].burst_time;
 
@@ -42,8 +38,6 @@ int main() {
         processes[i].waiting_time = processes[i - 1].waiting_time + processes[i - 1].burst_time;
         processes[i].turnaround_time = processes[i].waiting_time + processes[i].burst_time;
     }
-
-    // Calculate average waiting time and turnaround time
     float avg_waiting_time = 0, avg_turnaround_time = 0;
     for (i = 0; i < n; i++) {
         avg_waiting_time += processes[i].waiting_time;
